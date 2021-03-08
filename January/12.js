@@ -10,10 +10,14 @@ Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
 
 given 2d array, return 2d array
 
-if intervals[i][0] <= intervals[i-1][1] => overlap, so merge
-if not => just push intervals[i-1] in to return arr and update current interval to intervals[i]
-
 interval overlap may happen in the front of the array
+
+check if either/both of start and end points of interval[i]
+is within the curInt
+
+if so, expand the curInt accordingly
+if not, push curInt into returnArr
+
 */
 
 var merge = function (intervals) {
@@ -23,7 +27,9 @@ var merge = function (intervals) {
     for (let i = 1; i < intervals.length; i++){
         if (intervals[i][0] <= curInt[1]) {
             curInt = [curInt[0], intervals[i][1]];
-        } else{
+        } else if(){
+
+        }else{
             returnArr.push(curInt);
             curInt = intervals[i];
         };
