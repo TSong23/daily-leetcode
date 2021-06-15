@@ -12,16 +12,17 @@ Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 # once each array is returned, combined with first number, then send up again
 
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
-        return_arr = []
-        
-        for i in range(0, len(nums)):
-            new_arr = [nums[i]] + permute(nums[0:i]) + permute(nums[i:])
-        return new_arr
-
-    def helper(self, nums):
+    def permute(self, nums):
+        answer_arr = []
         if len(nums) == 1:
-            return nums
+            return [nums]
         for i in range(0, len(nums)):
-            new_arr = [nums[i]] + permute(nums[0:i] + nums[i:])
-        return new_arr
+            holder_arr = self.permute(nums[0:i] + nums[i+1:])
+            for arr in holder_arr:
+                perm_arr = [nums[i]] + arr
+                answer_arr.append(perm_arr)
+        return answer_arr
+
+
+test = Solution()
+print(test.permute([1,2,3]))
